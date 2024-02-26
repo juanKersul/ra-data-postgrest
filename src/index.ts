@@ -22,7 +22,6 @@ import {
     getQuery,
     encodeId,
 } from './urlBuilder';
-import qs from 'qs';
 
 /**
  * Maps react-admin queries to a postgrest REST API
@@ -141,7 +140,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
             }),
         };
 
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
 
         return config.httpClient(url, options).then(({ headers, json }) => {
             if (!headers.has('content-range')) {
@@ -167,7 +166,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
 
         const query = getQuery(primaryKey, id, resource, meta);
 
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
         const metaSchema = params.meta?.schema;
 
         return config
@@ -189,7 +188,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
 
         const query = getQuery(primaryKey, ids, resource, params.meta);
 
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
         const metaSchema = params.meta?.schema;
 
         return config
@@ -244,7 +243,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
             }),
         };
 
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
 
         return config.httpClient(url, options).then(({ headers, json }) => {
             if (!headers.has('content-range')) {
@@ -268,7 +267,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
         const { id, data, meta } = params;
         const primaryKey = getPrimaryKey(resource, config.primaryKeys);
         const query = getQuery(primaryKey, id, resource, meta);
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
         const metaSchema = params.meta?.schema;
 
         const body = JSON.stringify({
@@ -299,7 +298,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
         const { ids, meta, data } = params;
         const primaryKey = getPrimaryKey(resource, config.primaryKeys);
         const query = getQuery(primaryKey, ids, resource, meta);
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
         const body = JSON.stringify({
             ...dataWithoutVirtualId(
                 removePrimaryKey(data, primaryKey),
@@ -329,7 +328,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
         const { meta } = params;
         const primaryKey = getPrimaryKey(resource, config.primaryKeys);
         const query = getQuery(primaryKey, undefined, resource, meta);
-        const queryStr = qs.stringify(query);
+        const queryStr =query;
         const url = `${config.apiUrl}/${resource}${
             queryStr.length > 0 ? '?' : ''
         }${queryStr}`;
@@ -363,7 +362,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
 
         const query = getQuery(primaryKey, id, resource, meta);
 
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
         const metaSchema = params.meta?.schema;
 
         return config
@@ -388,7 +387,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
 
         const query = getQuery(primaryKey, ids, resource, meta);
 
-        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${query}`;
         const metaSchema = params.meta?.schema;
 
         return config
