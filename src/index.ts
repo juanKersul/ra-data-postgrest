@@ -142,7 +142,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
             }),
         };
 
-        const url = `${config.apiUrl}/${resource}?${JSON.stringify(query)}`;
+        const url = `${config.apiUrl}/${resource}?${qs.stringify(query)}`;
 
         return config.httpClient(url, options).then(({ headers, json }) => {
             if (!headers.has('content-range')) {
